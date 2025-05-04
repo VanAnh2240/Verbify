@@ -71,7 +71,7 @@ class ShopController extends Controller
     {
         $keySearch = $request->input('search');
 
-        $books = book::where('NAME', 'like', '%' . $keySearch . '%')->paginate(12);
+        $books = book::where('IS_SELLING', 'SELLING')->where('NAME', 'like', '%' . $keySearch . '%')->paginate(12);
         $selectedPrice = "";
         $genres = Genre::all();
         $releaseYears = book::select('RELEASE_YEAR')->distinct()->orderBy('RELEASE_YEAR', 'desc')->get();

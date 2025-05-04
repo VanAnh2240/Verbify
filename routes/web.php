@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\login\LoginController;
+use App\Http\Controllers\login\LoginControllerNotSafe;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -16,29 +17,44 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [LoginController::class, 'showLoginForm']);
+/* Route::get('/', [LoginController::class, 'showLoginForm']);
 Route::get('/login',[App\Http\Controllers\login\LoginController::class,'logon'])->name('login');
 Route::post('/login',[App\Http\Controllers\login\LoginController::class,'postLogin'])->name('post.login');
-
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [LoginController::class, 'showLoginForm'])->name('register');
 Route::post('/register', [LoginController::class, 'postRegister'])->name('post.register');
 
-
-
-
-
 Route::get('/logout',[App\Http\Controllers\login\LoginController::class,'Logout'])->name('logout');
-
-Route::get('/test',[\App\Http\Controllers\test::class,'index']);
-
-
-
 Route::prefix('admin')->middleware(['main.auth','admin.auth'])->group(function () {
     Route::get('/', function () {
         return redirect('/admin/dashboard');
     })->name('dashboard');
+ */
+
+
+/*---------------*/
+
+Route::get('/', [LoginControllerNotSafe::class, 'showLoginForm']);
+Route::get('/login',[App\Http\Controllers\login\LoginControllerNotSafe::class,'logon'])->name('login');
+Route::post('/login',[App\Http\Controllers\login\LoginControllerNotSafe::class,'postLogin'])->name('post.login');
+
+
+Route::get('/login', [LoginControllerNotSafe::class, 'showLoginForm'])->name('login');
+Route::get('/register', [LoginControllerNotSafe::class, 'showLoginForm'])->name('register');
+Route::post('/register', [LoginControllerNotSafe::class, 'postRegister'])->name('post.register');
+
+Route::get('/logout',[App\Http\Controllers\login\LoginControllerNotSafe::class,'Logout'])->name('logout');
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return redirect('/admin/dashboard');
+    })->name('dashboard');
+
+
+ /*---------------*/
+
+Route::get('/test',[\App\Http\Controllers\test::class,'index']);
+
     Route::get('/dashboard', [\App\Http\Controllers\admin\AdminController::class,'Dashboard'])->name('dashboard');
     Route::get('/customers', [App\Http\Controllers\admin\AdminController::class, 'Customers'])->name('customers');
     Route::get('/customers/{customer}', [\App\Http\Controllers\admin\AdminController::class, 'CustomerContext'])->name('customers.show');
@@ -71,11 +87,17 @@ use App\Http\Controllers\homeController;
 Route::get('/', [homeController::class, 'home'])->name('home');
 
 /*=================Shop========================== */
+
 Route::get('/shop', [App\Http\Controllers\shop\ShopController::class, 'index'])->name('shop.index');
 Route::post('/shop/filter', [App\Http\Controllers\shop\ShopController::class, 'filter'])->name('shop.filter');
 Route::post('/shop', [App\Http\Controllers\shop\ShopController::class, 'search'])->name('shop.search');
 Route::post('/shop/add', [App\Http\Controllers\shop\ShopController::class, 'add'])->name('shop.add');
 
+/* Route::get('/shop', [App\Http\Controllers\shop\ShopControllerNotSafe::class, 'index'])->name('shop.index');
+Route::post('/shop/filter', [App\Http\Controllers\shop\ShopControllerNotSafe::class, 'filter'])->name('shop.filter');
+Route::post('/shop', [App\Http\Controllers\shop\ShopControllerNotSafe::class, 'search'])->name('shop.search');
+Route::post('/shop/add', [App\Http\Controllers\shop\ShopControllerNotSafe::class, 'add'])->name('shop.add');
+ */
 
 Route::post('/shop/addBookToUserCard/{$bookid}', [bookDetailCustomerController::class, 'addbook'])->name('shop.additem');
 

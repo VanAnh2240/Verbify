@@ -5,30 +5,40 @@ namespace App\Http\Controllers\login;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Customer;
-use App\Models\Wishlist;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
-class LoginController extends Controller
+class LoginControllerNotSafe extends Controller
 {
     public function showLoginForm(){
         return view('login.login');
     }
+
     public function postLogin(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
             'username' => 'required|string|max:255',
             'password' => 'required|string|min:8',
         ]);
-        $credentials = $request->only('username', 'password');
-        if (Auth::attempt($credentials)) {
-            if(Auth::user()->is_admin==1) return redirect()->route('dashboard');
+
+        $username = $request->input('username');
+        $password = $request->input('password'); 
+        $user = DB::select("SELECT * FROM customer WHERE username = '$username' AND password = '$password' LIMIT 1");
+
+        if ($user) {
+            session(['user' => $user[0]]);
+
+            if ($user[0]->is_admin == 1) {
+                return redirect()->route('dashboard');
+            }
+
             return redirect()->route('home');
         }
-        // Xác thực thất bại
-        return redirect()->back()->with('err','Sai thong tin');
+
+        return redirect()->back()->with('err', 'Sai thong tin');
     }
+
     public function postRegister(Request $request): \Illuminate\Http\RedirectResponse
     {
         $request->validate([
@@ -56,7 +66,6 @@ class LoginController extends Controller
     public function Logout(Request $request): \Illuminate\Http\RedirectResponse
     {
         Auth::logout();
-        // Xác thực thất bại
-        return redirect()->back();
+        return redirect()->route('login');
     }
 }

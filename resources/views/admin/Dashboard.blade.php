@@ -3,7 +3,8 @@
 @section('content')
         <div class="row align-items-start">
             <div class="col roboto-medium-italic fs-4 purple">
-                Welcome! {{Auth::user()->USERNAME}}
+                Welcome! 
+                {{Auth::user()->USERNAME}}
             </div>
         </div>
         <div class="row gx-2 flex-nowrap">

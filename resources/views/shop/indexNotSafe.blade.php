@@ -119,11 +119,11 @@
             <div class = "row">
                     @foreach ($books as $book)
                         <div class="col book-item bg-grey m-4 col-3" >
-                        @if (!empty($book->images->first()->IMAGE_LINK))
-                            <a href="{{route('book.detail',$book->BOOK_ID)}}" class="book_img"><img src="{{$book->images->first()->IMAGE_LINK}}" alt="{{ $book->name }}"></a>
-                        @else
-                            <a href="{{route('book.detail',$book->BOOK_ID)}}" class="book_img"><img src="https://via.placeholder.com/150" alt="{{ $book->name }}"></a>
-                        @endif
+                            @if (!empty($book->IMAGE_LINK))
+                                <a href="{{ route('book.detail', $book->BOOK_ID) }}" class="book_img"><img src="{{ $book->IMAGE_LINK }}" alt="{{ $book->NAME }}"></a>
+                            @else
+                                <a href="{{ route('book.detail', $book->BOOK_ID) }}" class="book_img"><img src="https://via.placeholder.com/150" alt="{{ $book->NAME }}"></a>
+                            @endif
                             <div class="book_info px-4 py-2">
                                 <span class="book_title fs-5"><a href="#">{{$book->NAME}}</a></span>
                                 <span class="book_author fs-5">{{ $book->AUTHOR }}</span>
@@ -137,7 +137,7 @@
 </div>
 
 <div class="">
-            {{ $books->onEachSide(5)->links('shop.my-paginate') }}
+    {{ $paginator->onEachSide(5)->links('shop.my-paginate') }}
 </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
