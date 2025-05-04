@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* Route::get('/', [LoginController::class, 'showLoginForm']);
+Route::get('/', [LoginController::class, 'showLoginForm']);
 Route::get('/login',[App\Http\Controllers\login\LoginController::class,'logon'])->name('login');
 Route::post('/login',[App\Http\Controllers\login\LoginController::class,'postLogin'])->name('post.login');
 
@@ -30,12 +30,12 @@ Route::prefix('admin')->middleware(['main.auth','admin.auth'])->group(function (
     Route::get('/', function () {
         return redirect('/admin/dashboard');
     })->name('dashboard');
- */
+
 
 
 /*---------------*/
 
-Route::get('/', [LoginControllerNotSafe::class, 'showLoginForm']);
+/* Route::get('/', [LoginControllerNotSafe::class, 'showLoginForm']);
 Route::get('/login',[App\Http\Controllers\login\LoginControllerNotSafe::class,'logon'])->name('login');
 Route::post('/login',[App\Http\Controllers\login\LoginControllerNotSafe::class,'postLogin'])->name('post.login');
 
@@ -49,7 +49,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return redirect('/admin/dashboard');
     })->name('dashboard');
-
+ */
 
  /*---------------*/
 
@@ -93,11 +93,14 @@ Route::post('/shop/filter', [App\Http\Controllers\shop\ShopController::class, 'f
 Route::post('/shop', [App\Http\Controllers\shop\ShopController::class, 'search'])->name('shop.search');
 Route::post('/shop/add', [App\Http\Controllers\shop\ShopController::class, 'add'])->name('shop.add');
 
+/*---------------*/
 /* Route::get('/shop', [App\Http\Controllers\shop\ShopControllerNotSafe::class, 'index'])->name('shop.index');
 Route::post('/shop/filter', [App\Http\Controllers\shop\ShopControllerNotSafe::class, 'filter'])->name('shop.filter');
 Route::post('/shop', [App\Http\Controllers\shop\ShopControllerNotSafe::class, 'search'])->name('shop.search');
-Route::post('/shop/add', [App\Http\Controllers\shop\ShopControllerNotSafe::class, 'add'])->name('shop.add');
- */
+Route::post('/shop/add', [App\Http\Controllers\shop\ShopControllerNotSafe::class, 'add'])->name('shop.add'); */
+
+
+/*=================Shop========================== */
 
 Route::post('/shop/addBookToUserCard/{$bookid}', [bookDetailCustomerController::class, 'addbook'])->name('shop.additem');
 
