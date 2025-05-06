@@ -88,9 +88,9 @@
                 @foreach ($booksSimilar as $book)
                   <div class="col">
                     <div class="book_item">
-                        <a href="#"  class="book_img"><img src="{{$book->IMAGE_LINK}}" alt="img"></a>
+                        <a href="{{route('book.detail',$book->BOOK_ID)}}"  class="book_img"><img src="{{$book->IMAGE_LINK}}" alt="img"></a>
                         <div class="book_info px-4 py-2">
-                          <div class="book_title fs-5"><a href="#">{{$book->NAME}}</a></div>
+                          <div class="book_title fs-5"><a href="{{route('book.detail',$book->BOOK_ID)}}">{{$book->NAME}}</a></div>
                           <div class="book_author fs-5">{{$book->AUTHOR}}</div>
                           <div class="book_price fs-5">${{$book->PRICE}}</div>
                         </div>

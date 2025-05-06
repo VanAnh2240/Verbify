@@ -89,9 +89,9 @@
                 @foreach ($booksSimilar as $bookSML)
                   <div class="col">
                     <div class="book_item">
-                        <a href="{{route('book.detail',$book->BOOK_ID)}}" class="book_img"><img src="{{$bookSML->IMAGE_LINK}}" alt="img"></a>
+                        <a href="{{route('book.detail',$bookSML->BOOK_ID)}}" class="book_img"><img src="{{$bookSML->IMAGE_LINK}}" alt="img"></a>
                         <div class="book_info px-4 py-2">
-                          <div class="book_title fs-5"><a href="{{route('book.detail',$book->BOOK_ID)}}">{{$bookSML->NAME}}</a></div>
+                          <div class="book_title fs-5"><a href="{{route('book.detail',$bookSML->BOOK_ID)}}">{{$bookSML->NAME}}</a></div>
                           <div class="book_author fs-5">{{$bookSML->AUTHOR}}</div>
                           <div class="book_price fs-5">${{$bookSML->PRICE}}</div>
                         </div>
